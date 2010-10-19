@@ -94,8 +94,7 @@ class Member_email_registration_ext
     return;
   }
   // END	sessions_start
-  
-	
+ 	
 	/** ----------------------------------------
 	/**  Username/Password Update
 	/** ----------------------------------------*/
