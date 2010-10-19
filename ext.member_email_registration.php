@@ -65,6 +65,52 @@ class Member_email_registration_ext
   }
   // END	member_member_register_start	
 	
+	/**
+   * @todo
+   * @return  void
+   */  
+  function sessions_start($ee)
+  {
+/*    
+    $qs = $this->EE->uri->query_string;
+    if($qs != 'update_userpass' && $qs != 'update_email') return;
+    
+    $this->EE->session = $ee;
+    
+    switch($qs)
+    {
+      case 'update_userpass';
+
+        if( ! $this->EE->input->post('username')) return;
+
+        $_POST['email'] = $_POST['username'];
+        $_POST['password'] = $_POST['current_password'];
+
+        $this->_update_email();
+
+        break;
+    }
+*/
+    return;
+  }
+  // END	sessions_start
+  
+	
+	/** ----------------------------------------
+	/**  Username/Password Update
+	/** ----------------------------------------*/
+	function _update_userpass()
+	{		
+	}
+	
+	/** ----------------------------------------
+	/**  Email Update
+	/** ----------------------------------------*/
+	function _update_email()
+	{ 
+	}
+	
+	
 	// --------------------------------
 	//  Activate Extension
 	// --------------------------------
@@ -73,7 +119,8 @@ class Member_email_registration_ext
 
     // hooks array
     $hooks = array(
-      'member_member_register_start' => 'member_member_register_start'
+      'member_member_register_start' => 'member_member_register_start',
+      'sessions_start' => 'sessions_start'
     );
 
     // insert hooks and methods
@@ -94,13 +141,6 @@ class Member_email_registration_ext
       $this->EE->db->insert('exp_extensions', $data);
     }
 
-/*    
-    // run all sql queries
-    foreach ($sql as $query)
-    {
-      $this->EE->db->query($query);
-    }
-*/
     return true;
 	}
 	// END activate_extension
@@ -111,23 +151,6 @@ class Member_email_registration_ext
 	// --------------------------------  
 	function update_extension($current='')
 	{
-		
-    if ($current == '' OR $current == $this->version)
-    {
-      return FALSE;
-    }
-    
-    if($current < $this->version) { }
-
-    // init data array
-    $data = array();
-
-    // Add version to data array
-    $data['version'] = $this->version;    
-
-    // Update records using data array
-    $this->EE->db->where('class', get_class($this));
-    $this->EE->db->update('exp_extensions', $data);
   }
   // END update_extension
 
@@ -145,4 +168,5 @@ class Member_email_registration_ext
 	 
 }
 // END CLASS
+
 ?>
